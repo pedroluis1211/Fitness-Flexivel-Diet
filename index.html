@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Rumo ao Natal · Acompanhamento físico</title>
+<meta name="description" content="Acompanhe água, refeições, progresso físico e hábitos até 24/12." />
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#FAFAF7" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#15161A" media="(prefers-color-scheme: dark)" />
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Rumo ao Natal" />
+
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Barra superior -->
+<header class="topbar">
+  <h1 class="topbar__title" id="topbar-title">Hoje</h1>
+  <button class="icon-btn" id="btn-settings" aria-label="Abrir configurações" title="Configurações">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <path d="M19.4 13.5c.04-.33.06-.66.06-1s-.02-.67-.06-1l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.6 7.6 0 0 0-1.73-1l-.36-2.54a.5.5 0 0 0-.5-.43h-3.84a.5.5 0 0 0-.5.43l-.36 2.54c-.63.24-1.21.58-1.73 1l-2.39-.96a.5.5 0 0 0-.6.22L2.65 9.28a.5.5 0 0 0 .12.64L4.8 11.5c-.04.33-.06.66-.06 1s.02.67.06 1l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.13.22.39.31.6.22l2.39-.96c.52.42 1.1.76 1.73 1l.36 2.54c.05.25.26.43.5.43h3.84c.25 0 .45-.18.5-.43l.36-2.54c.63-.24 1.21-.58 1.73-1l2.39.96c.22.09.48 0 .6-.22l1.92-3.32a.5.5 0 0 0-.12-.64L19.4 13.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</header>
+
+<!-- Conteúdo da aba ativa é renderizado aqui pelos módulos -->
+<main id="view" class="view"></main>
+
+<!-- Navegação inferior -->
+<nav class="bottomnav" aria-label="Navegação principal">
+  <button class="bottomnav__item is-active" data-tab="hoje">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3.5 3.5 10v10h6v-6h5v6h6V10L12 3.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <span>Hoje</span>
+  </button>
+  <button class="bottomnav__item" data-tab="refeicoes">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 3v8a2 2 0 0 0 2 2v8M6 3a2 2 0 0 0-2 2v6M8 3v8M18 3c-1.7 0-3 2-3 5s1.3 5 3 5v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <span>Refeições</span>
+  </button>
+  <button class="bottomnav__item" data-tab="progresso">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 19V5M4 19h16M8 16v-5M12.5 16V7M17 16v-8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <span>Progresso</span>
+  </button>
+  <button class="bottomnav__item" data-tab="checklist">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 11.5 11 13.5 15.5 9M5 5h14v14H5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+    <span>Checklist</span>
+  </button>
+</nav>
+
+<!-- Área de overlays (configurações, modais, folhas inferiores) montada via JS -->
+<div id="overlay-root"></div>
+
+<!-- Toasts -->
+<div id="toast-host" class="toast-host" aria-live="polite"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
